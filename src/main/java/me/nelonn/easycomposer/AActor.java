@@ -49,6 +49,10 @@ public abstract class AActor extends Actor {
         components.put(componentName, component);
     }
 
+    public @Nullable AComponent removeComponent(@NotNull String name) {
+        return components.remove(name.toLowerCase(Locale.ENGLISH));
+    }
+
     public @Nullable AComponent getComponent(@NotNull String name) {
         return components.get(name.toLowerCase(Locale.ENGLISH));
     }
