@@ -1,0 +1,6 @@
+main: me.nelonn.easycomposer.paper.EasyComposerPlugin
+name: EasyComposer
+version: '${version}'
+api-version: '1.20'
+bootstrapper: me.nelonn.easycomposer.paper.EasyComposerBootstrap
+has-open-classloader: true
