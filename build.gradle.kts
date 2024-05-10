@@ -3,16 +3,15 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     `java-library`
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.papermc.paperweight.userdev") version "1.5.5"
+    id("io.papermc.paperweight.userdev") version "1.7.0"
 }
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") // reflection-remapper
     maven("https://repo.codemc.io/repository/maven-releases/") // PacketEvents
 }
 
@@ -22,7 +21,8 @@ dependencies {
     implementation(fileTree("libs/implement"))
 }
 
-tasks.named<JavaCompile>("compileJava") {
+tasks.withType<JavaCompile> {
+    options.release.set(21)
     options.encoding = "UTF-8"
 }
 

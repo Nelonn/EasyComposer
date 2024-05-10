@@ -2,6 +2,7 @@ package me.nelonn.bestseat;
 
 import me.nelonn.coprolite.paper.std.registryaccessor.AttributeAccessor;
 import me.nelonn.entitycomposer.paper.BukkitEntity;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,8 +13,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.level.Level;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftArmorStand;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftEntity;
+import org.bukkit.craftbukkit.entity.CraftArmorStand;
+import org.bukkit.craftbukkit.entity.CraftEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -58,8 +59,8 @@ public class ArmorStandSeat extends ArmorStand implements SeatLike {
 
     @Override
     @Nullable
-    public AttributeInstance getAttribute(@NotNull Attribute attribute) {
-        return AttributeAccessor.getAttribute(this, attribute, ArmorStandSeat::createAttributes);
+    public AttributeInstance getAttribute(@NotNull Holder<Attribute> attribute) {
+        return AttributeAccessor.getAttribute(this, attribute.value(), ArmorStandSeat::createAttributes);
     }
 
     @Override

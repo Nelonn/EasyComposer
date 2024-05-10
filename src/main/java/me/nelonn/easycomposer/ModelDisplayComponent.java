@@ -11,12 +11,14 @@ import me.nelonn.entitycomposer.shaded.bestvecs.ImmVec3d;
 import me.nelonn.entitycomposer.shaded.bestvecs.Vec3f;
 import me.nelonn.flint.path.Key;
 import me.nelonn.flint.path.Path;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,7 +46,9 @@ public class ModelDisplayComponent extends EntityComponent {
 
         public @NotNull ItemStack build() {
             ItemStack itemStack = new ItemStack(item);
-            itemStack.getOrCreateTag().putString("CustomModel", model.toString());
+            CustomData.update(DataComponents.CUSTOM_DATA, itemStack, nbt -> {
+                nbt.putString("CustomModel", model.toString());
+            });
             return itemStack;
         }
     }
